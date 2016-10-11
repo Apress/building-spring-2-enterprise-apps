@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+    "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+  <bean id="pattern" class="java.util.regex.Pattern" factory-method="compile">
+    <constructor-arg value="abc"/>
+  </bean>
+</beans>

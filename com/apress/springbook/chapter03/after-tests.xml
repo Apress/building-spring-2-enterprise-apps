@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+    "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+  <bean id="afterBean"
+        class="org.springframework.aop.framework.ProxyFactoryBean">
+    <property name="target">
+      <bean class="com.apress.springbook.chapter03.InitializingBeanNameClass">
+        <property name="firstName" value="Matt"/>
+      </bean>
+    </property>
+    <property name="interceptorNames">
+      <list>
+        <idref bean="nullArgumentsNotAllowedBeforeAdvice"/>
+        <idref bean="profilingAdvice"/>
+        <idref bean="traceInterceptor"/>
+        <idref bean="endMatchPointcutAdvisor"/>
+      </list>
+    </property>
+    <property name="proxyTargetClass" value="true"/>
+  </bean>
+
+  <bean id="profilingAdvice"
+        class="com.apress.springbook.chapter03.SimpleProfilingAroundAdvice"/>
+
+  <bean id="nullArgumentsNotAllowedBeforeAdvice"
+        class="com.apress.springbook.chapter03.NullArgumentsNotAllowedBeforeAdvice"/>
+
+<bean id="traceInterceptor"
+      class="org.springframework.aop.interceptor.CustomizableTraceInterceptor">
+  <property name="enterMessage"
+            value="Entered $[methodName] on $[targetClassShortName]"/>
+</bean>
+
+<bean id="concurrencyThrottleInterceptor"
+      class="org.springframework.aop.interceptor.ConcurrencyThrottleInterceptor"
+      singleton="false">
+  <property name="concurrencyLimit" value="5"/>
+</bean>
+
+<bean id="endMatchPointcutAdvisor"
+      class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor"
+      singleton="false">
+  <property name="advice" ref="concurrencyThrottleInterceptor"/>
+  <property name="mappedName" value="showValues"/>
+</bean>
+
+
+</beans>

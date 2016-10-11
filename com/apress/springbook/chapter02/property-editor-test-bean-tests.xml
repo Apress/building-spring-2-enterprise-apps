@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+    "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+  <bean id="testBean"
+        class="com.apress.springbook.chapter02.PropertyEditorTestBean">
+    <property name="myNumber" value="500"/>
+    <property name="myToggle" value="false"/>
+    <property name="myBytes" value="some bytes"/>
+    <property name="myStrings" value="Bram,Mark,Seth,Steven"/>
+    <property name="myAmount" value="1000000"/>
+    <property name="myClass" value="java.util.Collection"/>
+    <property name="myFile" value="placeholder.txt"/>
+    <property name="myInputStream" value="http://www.google.com"/>
+    <property name="myProperties">
+      <value>
+firstname=Steven
+lastname=Devijver
+      </value>
+    </property>
+    <property name="myUrl" value="http://del.icio.us"/>
+  </bean>
+</beans>

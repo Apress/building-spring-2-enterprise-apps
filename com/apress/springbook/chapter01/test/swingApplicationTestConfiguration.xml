@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+    "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+   <!-- configuring StubTournamentMatchManager (it doesn't have dependencies) -->
+  <bean id="tournamentMatchManager"
+        class= "com.apress.springbook.chapter01.test.StubTournamentMatchManager">
+  </bean>
+
+  <!-- configuring SwingApplication -->
+  <bean id="swingApplication"
+        class="com.apress.springbook.chapter01.swing_application.SwingApplication">
+    <property name="tournamentMatchManager" ref="tournamentMatchManager"/>
+  </bean>
+
+</beans>

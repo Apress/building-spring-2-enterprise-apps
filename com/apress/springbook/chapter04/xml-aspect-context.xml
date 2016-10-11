@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:aop="http://www.springframework.org/schema/aop"
+      xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+
+  <aop:config>
+    <aop:aspect ref="messagePrinter">
+      <aop:before method="printMessageToInformMatchStarts"
+                  pointcut="execution(* startMatch(..))"/>
+    </aop:aspect>
+
+  </aop:config>
+
+<!--
+    <aop:aspect ref="securityEnforcer">
+      <aop:before method="denyAccessToAll"
+                  pointcut="com.apress.springbook.chapter04.aspects.SystemPointcutsAspect.inServiceLayer()"/>
+    </aop:aspect>
+-->
+
+<!--
+    <aop:aspect ref="securityEnforcer">
+      <aop:pointcut id="inServiceLayer" 
+                    expression="within(com.apress.springbook.chapter04..*)"/>
+      <aop:before method="denyAccessToAll"
+                  pointcut-ref="inServiceLayer"/> 
+    </aop:aspect>
+
+
+  </aop:config>
+-->
+
+<!--
+  <aop:config>
+
+    <aop:pointcut id="inServiceLayer" 
+                  expression="within(com.apress.springbook.chapter04..*)"/>
+    <aop:aspect ref="securityEnforcer">
+      <aop:before method="denyAccessToAll"
+                  pointcut-ref="inServiceLayer"/>
+    </aop:aspect>
+-->
+
+<!--
+    <aop:aspect ref="messagePrinter">
+      <aop:after-returning method="printMessageToInformMatchHasStarted"
+                           returning="match"
+                           pointcut="execution(* startMatch(..))"/>
+    </aop:aspect>
+
+    <aop:aspect ref="messagePrinter">
+      <aop:after-throwing method="printMessageWhenMatchIdentifierIsNotFound"
+                          throwing="exception"
+                          pointcut="execution(* startMatch(..) throws com.apress.springbook.chapter04.UnknownMatchException)"/>
+    </aop:aspect>
+
+    <aop:aspect ref="messagePrinter">
+      <aop:after method="printMessageWhenStartMatchAttemptIsOver"
+                 pointcut="execution(* startMatch(..))"/>
+    </aop:aspect>
+
+    <aop:aspect ref="messagePrinter">
+      <aop:around method="controlStartMatchMethodExecution"
+                  pointcut="execution(* startMatch(..))"/>
+    </aop:aspect>
+-->
+
+<!--
+    <aop:advisor pointcut="execution(* startMatch(..))" advice-ref="loggingAdvice"/>
+    <aop:aspect ref="messagePrinter">
+      <aop:around method="controlStartMatchMethodExecution"
+                  pointcut="execution(* startMatch(..))"/>
+    </aop:aspect>
+  </aop:config>
+
+  <bean id="loggingAdvice" 
+        class="org.springframework.aop.interceptor.CustomizableTraceInterceptor">
+    <property name="enterMessage" 
+              value="Entering $[methodName] on $[targetClassShortName]"/>
+  </bean>
+-->
+
+  <bean id="messagePrinter" 
+        class="com.apress.springbook.chapter04.MessagePrinter"/>
+
+  <bean id="tournamentMatchManager"
+        class="com.apress.springbook.chapter04.DefaultTournamentMatchManager">
+    <!-- properties ommitted -->
+  </bean>
+
+  <bean id="securityEnforcer" 
+        class="com.apress.springbook.chapter04.SecurityEnforcer"/>
+
+</beans>

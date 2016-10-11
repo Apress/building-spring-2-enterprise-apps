@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+    "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+  <bean class="org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator"/>
+
+  <bean class="com.apress.springbook.chapter04.aspects.MessagePrintingAspect"/>
+<!--
+  <bean class="com.apress.springbook.chapter04.aspects.SystemPointcutsAspect"/>
+  <bean class="com.apress.springbook.chapter04.aspects.SecurityAspect"/>
+-->
+
+  <bean class="com.apress.springbook.chapter04.aspects.TennisMatchEventsAspect"/>
+
+  <bean class="com.apress.springbook.chapter04.aspects.HappyMessagePrintingAspect"/>
+
+  <bean class="com.apress.springbook.chapter04.aspects.AnnoyedMessagePrintingAspect"/>
+
+
+  <bean id="tournamentMatchManager"
+        class="com.apress.springbook.chapter04.DefaultTournamentMatchManager">
+    <!-- properties ommitted -->
+  </bean>
+</beans>

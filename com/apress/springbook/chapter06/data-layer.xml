@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+    "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+      destroy-method="close">
+  <property name="driverClassName" value="org.hsqldb.jdbcDriver"/>
+  <property name="url" value="jdbc:hsqldb:mem:."/>
+  <property name="username" value="sa"/>
+  <property name="password" value=""/>
+</bean>
+
+<bean id="memberDao" class="com.apress.springbook.chapter06.MemberDaoImpl">
+  <property name="dataSource" ref="dataSource"/>
+</bean>
+
+</beans>

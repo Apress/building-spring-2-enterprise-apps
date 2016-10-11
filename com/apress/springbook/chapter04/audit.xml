@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+    "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+  <bean class="org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator"/>
+
+  <bean class="com.apress.springbook.chapter04.aspects.AuditInformationRetentionAspect"
+        init-method="init">
+    <property name="auditInformationRetentionPolicy" 
+              ref="auditInformationRetentionPolicy"/>
+    <property name="currentUserInformation" ref="currentUserInformation"/>
+  </bean>
+
+  <bean id="businessOperations"
+        class="com.apress.springbook.chapter04.BusinessOperations">
+    <!-- properties ommitted -->
+  </bean>
+
+  <bean id="auditInformationRetentionPolicy"
+        class="com.apress.springbook.chapter04.AuditInformationRetentionPolicyImpl">
+    <!-- properties ommitted -->
+  </bean>
+
+  <bean id="currentUserInformation"
+        class="com.apress.springbook.chapter04.CurrentUserInformationImpl">
+    <!-- properties ommitted -->
+  </bean>
+</beans>

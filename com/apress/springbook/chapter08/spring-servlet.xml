@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE beans PUBLIC
+    "-//SPRING//DTD BEAN//EN"
+    "http://www.springframework.org/dtd/spring-beans.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+
+<bean id="allMembersController"
+      class="com.apress.springbook.chapter08.web.AllMembersController">
+  <property name="membershipService" ref="membershipService" />
+</bean>
+
+<bean id="controllerNameHandlerMapper"
+      class="org.springframework.web.servlet.mvc.ControllerClassNameHandlerMapping"
+  />
+
+<bean id="viewResolver"
+      class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+  <property name="viewClass"
+            value="org.springframework.web.servlet.view.JstlView" />
+  <property name="prefix" value="/WEB-INF/jsp/"/>
+  <property name="suffix" value=".jsp"/>
+</bean>
+
+<bean id="paginatedAllMembersController"
+      class="com.apress.springbook.chapter08.web.PaginatedAllMembersController">
+  <property name="membershipService" ref="membershipService" />
+</bean>
+
+
+<bean id="messageSource"
+      class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+  <property name="basenames">
+    <list>
+      <value>messages</value>
+    </list>
+  </property>
+</bean>
+
+
+</beans>

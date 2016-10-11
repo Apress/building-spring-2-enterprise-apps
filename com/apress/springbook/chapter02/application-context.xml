@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+    "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+  <bean id="swingApplication"
+        class="org.apress.springbook.chapter02.SwingApplication">
+    <constructor-arg ref="tournamentMatchManager"/>
+  </bean>
+
+  <bean id="tournamentMatchManager"
+        class="org.apress.springbook.chapter02.DefaultTournamentMatchManager">
+    <property name="matchDao" value="matchDao"/>
+  </bean>
+
+  <bean id="matchDao"
+        class="org.apress.springbook.chapter02.JdbcMatchDao">
+    <property name="dataSource" ref="dataSource"/>
+  </bean>
+
+  <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+    <property name="driverClassName" value="org.hsqldb.jdbcDriver"/>
+    <property name="url" value="jdbc:hsqldb:hsql:/localhost/test"/>
+    <property name="username" value="sa"/>
+    <property name="password" value=""/>
+    <property name="initialSize" value="10"/>
+    <property name="testOnBorrow" value="true"/>
+  </bean>
+
+   <bean id="Kim" class="com.apress.springbook.chapter02.Player">
+      <constructor-arg value="Kim Clijsters"/>
+      <property name="ranking" value="1"/>
+   </bean>
+
+   <bean id="Justine" class="com.apress.springbook.chapter02.Player">
+      <constructor-arg ref="Henin-Hardenne"/>
+      <property name="ranking" value="5"/>
+   </bean>
+
+   <bean id="Henin-Hardenne" class="java.lang.String">
+      <constructor-arg value="Justine Henin-Hardenne"/>
+   </bean>
+
+
+<!--
+   <bean id="Kim" class="com.apress.springbook.chapter02.Player">
+      <constructor-arg value="Kim Clijsters"/>
+      <constructor-arg value="1"/>
+   </bean>
+
+   <bean id="Justine" class="com.apress.springbook.chapter02.Player">
+      <constructor-arg ref="Henin-Hardenne"/>
+      <constructor-arg value="5"/>
+   </bean>
+
+   <bean id="Henin-Hardenne" class="java.lang.String">
+      <constructor-arg value="Justine Henin-Hardenne"/>
+   </bean>
+-->
+
+<!--
+  <bean id="Kim" class="com.apress.springbook.chapter02.Player">
+    <property name="fullName" value="Kim Clijsters"/>
+    <property name="ranking" value="1"/>
+  </bean>
+
+  <bean id="Justine" class="com.apress.springbook.chapter02.Player">
+    <property name="fullName" ref="Henin-Hardenne"/>
+    <property name="ranking" value="5"/>
+  </bean>
+
+  <bean id="Henin-Hardenne" class="java.lang.String">
+    <constructor-arg value="Justine Henin-Hardenne"/>
+  </bean>
+-->
+</beans>

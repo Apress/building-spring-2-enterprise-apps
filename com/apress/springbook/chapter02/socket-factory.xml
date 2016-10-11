@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+    "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+  <!--(1) -->
+  <bean id="socketFactory" class="javax.net.SocketFactory" factory-method="getDefault">
+  </bean>
+
+  <bean id="localhost" 
+        factory-bean="socketFactory" factory-method="createSocket">
+      <constructor-arg value="localhost"/>
+      <constructor-arg value="80"/>
+  </bean>
+
+  <bean id="apress.com" 
+        factory-bean="socketFactory" factory-method="createSocket">
+      <constructor-arg value="www.apress.com"/>
+      <constructor-arg value="80"/>
+  </bean>
+</beans>

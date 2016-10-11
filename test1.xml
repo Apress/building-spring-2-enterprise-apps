@@ -1,0 +1,11 @@
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+  <!-- Spring Framework configuration file -->
+
+  <!--  Injecting Steven in the name property -->
+  <bean id="bean" class="com.apress.springbook.chapter01.DemonstratingBean">
+    <constructor-arg value="Steven"/>
+<!--    <property name="name" value="Steven"/> -->
+  </bean>
+</beans>
